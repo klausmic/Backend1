@@ -103,7 +103,8 @@ app.MapPost("/contacts", async (ContactModel newContactModel) =>
         Email = newContactModel.Email,
         Address = newContactModel.Address,
         CreatedTimestamp = newContactModel.CreatedTimestamp,
-        Note = newContactModel.Note
+        Note = newContactModel.Note,
+        IsClosed = true
     };
     context.Add(newContact);
     await context.SaveChangesAsync();

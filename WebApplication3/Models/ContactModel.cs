@@ -8,10 +8,9 @@
         public string Email { get; set; }
         public string Address { get; set; }
         public string CreatedTimestamp { get; set; }
-
-
         public string Note { get; set; }
 
+        public bool IsClosed { get; set; }
         
     }
 }
