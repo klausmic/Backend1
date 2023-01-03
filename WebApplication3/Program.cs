@@ -1,9 +1,17 @@
 using WebApplication3.Data;
 using WebApplication3.Models;
 
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:3000/");
+                      });
+});
 
 
 // Add services to the container.
@@ -110,7 +118,7 @@ app.MapPost("/contacts", async (ContactModel newContactModel) =>
     await context.SaveChangesAsync();
     return Results.Created($"https://localhost:7223/contacts/{newContact.ContactId}", newContact);
 });
-
+app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
     
